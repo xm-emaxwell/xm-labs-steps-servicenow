@@ -13,7 +13,7 @@ This step allows you to get an incident from a table in ServiceNow.
 # Files
 
 * [ServiceNowSteps.zip](ServiceNowSteps.zip) - Workflow zip file with the step and example flow
-* [servicenow.png](/servicenow.png) - ServiceNow logo
+* [servicenow.jpg](/servicenow.jpg) - ServiceNow logo
 
 # How it works
 This step uses a ServiceNow endpoint to get a specific incident from a table in ServiceNow.
