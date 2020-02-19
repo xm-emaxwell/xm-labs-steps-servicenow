@@ -1,6 +1,6 @@
 # ServiceNow Steps
 
-This step allows you to get an incident from a table in ServiceNow.
+This step allows you to get a record from a table in ServiceNow.
 
 ---------
 
@@ -16,7 +16,7 @@ This step allows you to get an incident from a table in ServiceNow.
 * [servicenow.jpg](/servicenow.jpg) - ServiceNow logo
 
 # How it works
-This step uses a ServiceNow endpoint to get a specific incident from a table in ServiceNow. Inputs can be specified for specific fields of the incident to be returned. Invalid inputs will produce output in the log.
+This step uses a ServiceNow endpoint to get a specific record from a table in ServiceNow. Inputs can be specified for specific fields of the record to be returned. Invalid inputs will produce output in the log.
 
 
 # Installation
@@ -33,7 +33,7 @@ The **ServiceNow - Get Record** step is now available in your custom steps. So n
 ### Inputs
 | Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
 | ----- | ----------| --- | --- | --------- | ------------- | --------- |
-| sys_id | Yes | 0 | 2000 | ID of incident | | No |
+| sys_id | Yes | 0 | 2000 | ID of record | | No |
 | table | Yes | 0 | 2000 | Name of the ServiceNow table | | No |
 | input_0 | No | 0 | 2000 | Name of field to return to output_0 | | No |
 | input_1 | No | 0 | 2000 | Name of field to return to output_1 | | No |
@@ -46,7 +46,7 @@ The **ServiceNow - Get Record** step is now available in your custom steps. So n
 
 | Name | Description |
 | ---- | ----------  |
-| record | JSON representation of all data associated with incident |
+| record | JSON representation of all data associated with record |
 | output_0 | output from input_0 value of request |
 | output_1 | output from input_1 value of request |
 | output_2 | output from input_2 value of request |
