@@ -1,7 +1,5 @@
 # ServiceNow Steps
 
-This step allows you to get a record from a table in ServiceNow.
-
 ---------
 
 <kbd>
@@ -13,51 +11,85 @@ This step allows you to get a record from a table in ServiceNow.
 # Files
 
 * [ServiceNowSteps.zip](ServiceNowSteps.zip) - Workflow zip file with the step and example flow
-* [servicenow.jpg](/servicenow.jpg) - ServiceNow logo
+* [ServiceNow_Logo.png](ServiceNow_Logo.png) - ServiceNow logo
 
 # How it works
-This step uses a ServiceNow endpoint to get a specific record from a table in ServiceNow. Inputs can be specified for specific fields of the record to be returned. Invalid inputs will produce output in the log.
-
+These steps can be used to perform various actions against ServiceNow
+- Get Record - get a specific record from a table and output specified column values
+- Get Recent Incidents - get recent incidents that match certain criteria
+- Get Recent Changes - get recent changes that match certain criteria
 
 # Installation
 
 ## xMatters Setup
 1. Download the [ServiceNowSteps.zip](ServiceNowSteps.zip) file onto your local computer
-2. Navigate to the Developer tab of your xMatters instance
+2. Navigate to the Workflows in your xMatters instance
 3. Click Import, and select the zip file you just downloaded
 
 
 ## Usage
-The **ServiceNow - Get Record** step is now available in your custom steps. So navigate to the appropriate canvas so you can add the step there. If you'd like to experiment with it, the **ServiceNow Steps** workflow has a canvas that can be triggered via HTTP call. 
+### ServiceNow - Get Record
+The **ServiceNow - Get Record** step can be used to query for a record in a specified table and return several values from the specified table columns.
 
-### Inputs
+#### Inputs
 | Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
 | ----- | ----------| --- | --- | --------- | ------------- | --------- |
 | sys_id | Yes | 0 | 2000 | ID of record | | No |
-| table | Yes | 0 | 2000 | Name of the ServiceNow table | | No |
-| input_0 | No | 0 | 2000 | Name of field to return to output_0 | | No |
-| input_1 | No | 0 | 2000 | Name of field to return to output_1 | | No |
-| input_2 | No | 0 | 2000 | Name of field to return to output_2 | | No |
-| input_3 | No | 0 | 2000 | Name of field to return to output_3 | | No |
-| input_4 | No | 0 | 2000 | Name of field to return to output_4 | | No |
+| Table | Yes | 0 | 2000 | Name of the ServiceNow table | | No |
+| Output 1 Column Name | No | 0 | 2000 | Name of field to return to Output 1 | | No |
+| Output 2 Column Name | No | 0 | 2000 | Name of field to return to Output 2 | | No |
+| Output 3 Column Name | No | 0 | 2000 | Name of field to return to Output 3 | | No |
+| Output 4 Column Name | No | 0 | 2000 | Name of field to return to Output 4 | | No |
+| Output 5 Column Name | No | 0 | 2000 | Name of field to return to Output 5 | | No |
 
-
-### Outputs
+#### Outputs
 
 | Name | Description |
 | ---- | ----------  |
-| record | JSON representation of all data associated with record |
-| output_0 | output from input_0 value of request |
-| output_1 | output from input_1 value of request |
-| output_2 | output from input_2 value of request |
-| output_3 | output from input_3 value of request |
-| output_4 | output from input_4 value of request |
+| Raw Record | Raw value of returned record |
+| Output 1 | output value from column set in *Output 1 Column Name* |
+| Output 2 | output value from column set in *Output 2 Column Name* |
+| Output 3 | output value from column set in *Output 3 Column Name* |
+| Output 4 | output value from column set in *Output 4 Column Name* |
+| Output 5 | output value from column set in *Output 5 Column Name* |
 
+---
 
-## Example
-This is an example of getting a certain ServiceNow Record on an HTTP Trigger.
+### ServiceNow - Get Recent Incidents
+The **ServiceNow - Get Recent Incidents** step can be used to query ServiceNow for incidents that match a value in a porperty like *cmdb_ci.name* in the last X days. 
 
-<kbd>
-	<img src="/media/ExampleFlow.png">
-</kbd>
+#### Inputs
+| Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
+| ----- | ----------| --- | --- | --------- | ------------- | --------- |
+| ServiceNow Property Name | No | 0 | 20000 |The ServiceNow incident property you want to search like cmdb_ci.name | cmdb_ci.name | No |
+| ServiceNow Property Value | No | 0 | 20000 | The value of the ServiceNow incident property you want to match | | No |
+| Max Incidents | No | 0 | 3 | Max number of incidents to return | 5 | No |
+| Days Back | No | 0 | 3 | Number of days back to search for related incidents | 30 | No |
+| Exclude Incident | No | 0 | 2000 | Incident number to exclude from the results | | No |
+| ServiceNow URL | No | 0 | 20000 | Base URL for the ServiceNow instance used to build the links to the incident records (https://<instance_name>.service-now.com) | | No |
 
+#### Outputs
+
+| Name | Description |
+| ---- | ----------  |
+| Recent Incidents | Text representation of recent incidents that were found |
+
+---
+
+### ServiceNow - Get Recent Changes
+The **ServiceNow - Get Recent Changes** step can be used to query ServiceNow for changes that match a value in a porperty like *cmdb_ci.name* in the last X days. 
+
+#### Inputs
+| Name  | Required? | Min | Max | Help Text | Default Value | Multiline |
+| ----- | ----------| --- | --- | --------- | ------------- | --------- |
+| ServiceNow Property Name | No | 0 | 20000 |The ServiceNow incident property you want to search like cmdb_ci.name | cmdb_ci.name | No |
+| ServiceNow Property Value | No | 0 | 20000 | The value of the ServiceNow incident property you want to match | | No |
+| Max Changes | No | 0 | 3 | Max number of changes to return | 5 | No |
+| Days Back | No | 0 | 3 | Number of days back to search for related changes | 30 | No |
+| ServiceNow URL | No | 0 | 20000 | Base URL for the ServiceNow instance used to build the links to the changes records (https://<instance_name>.service-now.com) | | No |
+
+#### Outputs
+
+| Name | Description |
+| ---- | ----------  |
+| Recent Changes | Text representation of recent changes that were found |
